@@ -416,6 +416,32 @@ export const messageApi = {
       method: 'POST',
       body: JSON.stringify(data),
     }),
+  sendBulk: (
+    sessionId: string,
+    data: {
+      messages: Array<{ chatId: string; type: string; content: any }>;
+      options?: { delayBetweenMessages?: number; randomizeDelay?: boolean };
+    },
+  ) =>
+    request<{
+      batchId: string;
+      status: string;
+      totalMessages: number;
+      estimatedCompletionTime?: string;
+      statusUrl: string;
+    }>(`/sessions/${sessionId}/messages/send-bulk`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+  getBatchStatus: (sessionId: string, batchId: string) =>
+    request<{
+      batchId: string;
+      status: string;
+      totalMessages: number;
+      processedMessages: number;
+      successfulMessages: number;
+      failedMessages: number;
+    }>(`/sessions/${sessionId}/messages/batch/${batchId}`),
 };
 
 // =============================================================================

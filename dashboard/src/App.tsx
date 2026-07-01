@@ -17,6 +17,7 @@ const Webhooks = lazy(() => import('./pages/Webhooks').then(m => ({ default: m.W
 const Logs = lazy(() => import('./pages/Logs').then(m => ({ default: m.Logs })));
 const ApiKeys = lazy(() => import('./pages/ApiKeys').then(m => ({ default: m.ApiKeys })));
 const MessageTester = lazy(() => import('./pages/MessageTester').then(m => ({ default: m.MessageTester })));
+const BulkSender = lazy(() => import('./pages/BulkSender').then(m => ({ default: m.BulkSender })));
 const Infrastructure = lazy(() => import('./pages/Infrastructure').then(m => ({ default: m.Infrastructure })));
 const Plugins = lazy(() => import('./pages/Plugins'));
 
@@ -108,6 +109,7 @@ function AppContent() {
             {role === 'admin' && <Route path="api-keys" element={<ApiKeys />} />}
             <Route path="logs" element={<Logs />} />
             <Route path="message-tester" element={<MessageTester />} />
+            <Route path="bulk-sender" element={<BulkSender />} />
             <Route path="infrastructure" element={<Infrastructure />} />
             {role === 'admin' && <Route path="plugins" element={<Plugins />} />}
             <Route path="*" element={<Navigate to="/" replace />} />
